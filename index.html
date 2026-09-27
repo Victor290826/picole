@@ -1350,6 +1350,17 @@
 
     <!-- JavaScript Application Logic -->
     <script>
+        (function bloquearSaidaComBotaVoltar() {
+        history.pushState({ screen: 'tela-home' }, null, location.href);
+
+        window.addEventListener('popstate', function (event) {
+            history.pushState({ screen: 'tela-home' }, null, location.href);
+
+            if (typeof telaAtual !== 'undefined' && telaAtual !== 'tela-home') {
+                abrirTela('tela-home', false);
+            }
+        });
+        })();
         // OFFICIAL PRODUCTS CATALOG DATASET
         const PRODUTOS = [
             // PICOLÉS - R$ 7,00
@@ -1654,7 +1665,7 @@
                         </div>
                     </div>
 
-                    <div style="display: flex; items-center; gap: 0.8rem;">
+                    <div style="display: flex; align-items: center; gap: 0.8rem;">
                         <div class="qty-controls">
                             <button onclick="alterarQuantidade(${item.id}, -1)" class="qty-btn">-</button>
                             <span class="qty-value">${item.quantidade}</span>
