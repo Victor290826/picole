@@ -1351,14 +1351,13 @@
 
     <!-- JavaScript Application Logic -->
     <script>
-        // Variable global para controlar a tela
         let telaAtual = 'tela-home';
 
-        // 1. Define a tela inicial no histórico assim que o site carrega
-        history.replaceState({ tela: 'tela-home' }, null, location.href);
+        // 1. Regista o ecrã inicial no histórico
+        history.replaceState({ tela: 'tela-home' }, '', location.href);
 
-        // 2. Função de trocar de tela (agora avisa o histórico do celular)
-        function abrirTela(idTela, push = true) {
+            // 2. Função para alternar de ecrã
+            function abrirTela(idTela, registrarHistorico = true) {
             document.querySelectorAll('.tela').forEach(t => t.classList.remove('active'));
             const target = document.getElementById(idTela);
     
@@ -1367,24 +1366,25 @@
                 telaAtual = idTela;
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-        
-            // Registra a nova tela no histórico do celular
-             if (push) {
-                history.pushState({ tela: idTela }, null, location.href);
+
+            if (registrarHistorico) {
+                history.pushState({ tela: idTela }, '', location.href);
             }
+    
         }
 
-        // 3. Intercepta o botão "Voltar" do celular
+        // 3. Intercepta o botão "Voltar" do telemóvel
         window.addEventListener('popstate', function (event) {
             if (telaAtual !== 'tela-home') {
-                // Se estiver no Carrinho, Cardápio ou Contato, volta para o Início
+                // Se estiver no Cardápio, Carrinho ou Contato, regressa ao Início
                 abrirTela('tela-home', false);
-                history.pushState({ tela: 'tela-home' }, null, location.href);
+                history.pushState({ tela: 'tela-home' }, '', location.href);
             } else {
-                // Se já estiver no Início, segura o cliente na página para não sair
-                history.pushState({ tela: 'tela-home' }, null, location.href);
+            // Se já estiver no Início, segura o utilizador na página
+            history.pushState({ tela: 'tela-home' }, '', location.href);
             }
         });
+        
         // OFFICIAL PRODUCTS CATALOG DATASET
         const PRODUTOS = [
             // PICOLÉS - R$ 7,00
