@@ -1351,29 +1351,39 @@
 
     <!-- JavaScript Application Logic -->
     <script>
-        (function bloquearSaidaComBotaVoltar() {
-        history.pushState({ screen: 'tela-home' }, null, location.href);
+        // Variable global para controlar a tela
+        let telaAtual = 'tela-home';
 
-        window.addEventListener('popstate', function (event) {
-            history.pushState({ screen: 'tela-home' }, null, location.href);
+        // 1. Define a tela inicial no histórico assim que o site carrega
+        history.replaceState({ tela: 'tela-home' }, null, location.href);
 
-            if (typeof telaAtual !== 'undefined' && telaAtual !== 'tela-home') {
-                abrirTela('tela-home', false);
+        // 2. Função de trocar de tela (agora avisa o histórico do celular)
+        function abrirTela(idTela, push = true) {
+            document.querySelectorAll('.tela').forEach(t => t.classList.remove('active'));
+            const target = document.getElementById(idTela);
+    
+            if (target) {
+                target.classList.add('active');
+                telaAtual = idTela;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-        });
-        })();
-        // 1. Cria um histórico "falso" para o navegador não fechar a página de primeira
-        history.pushState({ pagina: 'home' }, null, location.href);
-
-        // 2. Intercepta a ação quando o cliente aperta o botão 'Voltar' do celular
-        window.addEventListener('popstate', function (event) {
-        // Mantém o cliente no site colocando a página no histórico de novo
-        history.pushState({ pagina: 'home' }, null, location.href);
-
-        // Se ele estiver em outra aba (como Carrinho ou Retirada), volta para a tela Inicial
-        if (typeof telaAtual !== 'undefined' && telaAtual !== 'tela-home') {
-            abrirTela('tela-home', false);
+        
+            // Registra a nova tela no histórico do celular
+             if (push) {
+                history.pushState({ tela: idTela }, null, location.href);
+            }
         }
+
+        // 3. Intercepta o botão "Voltar" do celular
+        window.addEventListener('popstate', function (event) {
+            if (telaAtual !== 'tela-home') {
+                // Se estiver no Carrinho, Cardápio ou Contato, volta para o Início
+                abrirTela('tela-home', false);
+                history.pushState({ tela: 'tela-home' }, null, location.href);
+            } else {
+                // Se já estiver no Início, segura o cliente na página para não sair
+                history.pushState({ tela: 'tela-home' }, null, location.href);
+            }
         });
         // OFFICIAL PRODUCTS CATALOG DATASET
         const PRODUTOS = [
