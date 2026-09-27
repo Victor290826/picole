@@ -1143,7 +1143,7 @@
                 <div onclick="abrirTela('tela-contato')" class="feature-card card-location">
                     <div>
                         <div class="feature-icon"><i class="fa-solid fa-store"></i></div>
-                        <h3 class="feature-title">Local de Busca</h3>
+                        <h3 class="feature-title">Local de Busca e Contato</h3>
                         <p class="feature-desc">Veja horários de funcionamento e endereço de retirada.</p>
                     </div>
                     <span class="feature-link">Ver Informações <i class="fa-solid fa-arrow-right"></i></span>
@@ -1333,7 +1333,7 @@
                     </h4>
                     <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem;">
                         <li>📍 <strong>Endereço Exato:</strong> O endereço completo para a busca é enviado no seu WhatsApp assim que você envia o pedido!</li>
-                        <li>⏰ <strong>Horário de Funcionamento:</strong> Terça a Domingo, das 10:00h às 20:00h.</li>
+                        <li>⏰ <strong>Horário de Funcionamento:</strong> Segunda a Domingo, das 10:30h às 22:00h.</li>
                         <li>❄️ <strong>Embalagem Especial:</strong> Preparamos seus picolés e tortas bem congelados para garantirem o trajeto até a sua casa.</li>
                     </ul>
                 </div>
@@ -1362,6 +1362,19 @@
             }
         });
         })();
+        // 1. Cria um histórico "falso" para o navegador não fechar a página de primeira
+        history.pushState({ pagina: 'home' }, null, location.href);
+
+        // 2. Intercepta a ação quando o cliente aperta o botão 'Voltar' do celular
+        window.addEventListener('popstate', function (event) {
+        // Mantém o cliente no site colocando a página no histórico de novo
+        history.pushState({ pagina: 'home' }, null, location.href);
+
+        // Se ele estiver em outra aba (como Carrinho ou Retirada), volta para a tela Inicial
+        if (typeof telaAtual !== 'undefined' && telaAtual !== 'tela-home') {
+            abrirTela('tela-home', false);
+        }
+        });
         // OFFICIAL PRODUCTS CATALOG DATASET
         const PRODUTOS = [
             // PICOLÉS - R$ 7,00
