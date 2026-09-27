@@ -85,7 +85,6 @@
         }
 
         .header-container {
-            max-w: 1150px;
             max-width: 1150px;
             margin: 0 auto;
             padding: 0.8rem 1.2rem;
@@ -1114,59 +1113,59 @@
                         <i class="fa-solid fa-ice-cream"></i> Ver Cardápio
                     </button>
                     <button onclick="abrirTela('tela-contato')" class="btn-secondary">
-                        <i class="fa-solid fa-map-pin"></i> Ver Local de Retirada
+                        <i class="fa-solid fa-location-dot"></i> Onde Retirar
                     </button>
                 </div>
             </div>
 
-            <!-- Home Shortcuts Cards Grid -->
+            <!-- Home Cards Grid -->
             <div class="home-grid">
                 <div onclick="abrirTela('tela-cardapio')" class="feature-card card-menu">
                     <div>
                         <div class="feature-icon"><i class="fa-solid fa-utensils"></i></div>
                         <h3 class="feature-title">Nosso Cardápio</h3>
-                        <p class="feature-desc">Escolha entre 14 sabores de picolés e tortas no pote cremosas.</p>
+                        <p class="feature-desc">Confira nossos picolés artesanais gourmet e tortas no pote preparados diariamente.</p>
                     </div>
-                    <span class="feature-link">Ver Sobremesas <i class="fa-solid fa-arrow-right"></i></span>
+                    <span class="feature-link">Escolher Sabores <i class="fa-solid fa-arrow-right"></i></span>
                 </div>
 
                 <div onclick="abrirTela('tela-carrinho')" class="feature-card card-cart">
                     <div>
                         <div class="feature-icon"><i class="fa-solid fa-bag-shopping"></i></div>
-                        <h3 class="feature-title">Seu Pedido</h3>
-                        <p class="feature-desc">Confira seus doces, informe o horário e confirme pelo WhatsApp.</p>
+                        <h3 class="feature-title">Meu Pedido</h3>
+                        <p class="feature-desc">Veja os itens selecionados e conclua o envio diretamente para o nosso WhatsApp.</p>
                     </div>
-                    <span class="feature-link">Ver Carrinho <i class="fa-solid fa-arrow-right"></i></span>
+                    <span class="feature-link">Ver Sacola <i class="fa-solid fa-arrow-right"></i></span>
                 </div>
 
                 <div onclick="abrirTela('tela-contato')" class="feature-card card-location">
                     <div>
-                        <div class="feature-icon"><i class="fa-solid fa-store"></i></div>
-                        <h3 class="feature-title">Local de Busca</h3>
-                        <p class="feature-desc">Veja horários de funcionamento e endereço de retirada.</p>
+                        <div class="feature-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                        <h3 class="feature-title">Local de Retirada</h3>
+                        <p class="feature-desc">Saiba onde estamos localizados e nosso horário para busca do seu pedido.</p>
                     </div>
-                    <span class="feature-link">Ver Informações <i class="fa-solid fa-arrow-right"></i></span>
+                    <span class="feature-link">Ver Endereço <i class="fa-solid fa-arrow-right"></i></span>
                 </div>
             </div>
 
-            <!-- How Pickup Works Steps -->
+            <!-- Steps Info -->
             <div class="info-section">
-                <h3 class="info-title">Como funciona para retirar?</h3>
+                <h3 class="info-title">Como Funciona a Retirada?</h3>
                 <div class="steps-grid">
                     <div class="step-box">
                         <div class="step-number">1</div>
-                        <h4>Escolha os Sabores</h4>
-                        <p>Adicione seus picolés ou tortas ao carrinho no nosso site.</p>
+                        <h4>Escolha no Site</h4>
+                        <p>Navegue pelo cardápio e adicione suas sobremesas favoritas na sacola.</p>
                     </div>
                     <div class="step-box">
                         <div class="step-number">2</div>
-                        <h4>Envie pelo WhatsApp</h4>
-                        <p>Informe seu nome, forma de pagamento e horário previsto para busca.</p>
+                        <h4>Envie no WhatsApp</h4>
+                        <p>Preencha seu nome e envie o resumo do pedido para nosso atendimento.</p>
                     </div>
                     <div class="step-box">
                         <div class="step-number">3</div>
                         <h4>Retire no Local</h4>
-                        <p>Seu pedido estará embalado e geladinho esperando você!</p>
+                        <p>Aguarde a confirmação e passe em nosso ponto de retirada para buscar!</p>
                     </div>
                 </div>
             </div>
@@ -1176,165 +1175,130 @@
         <section id="tela-cardapio" class="tela">
             <div class="catalog-header">
                 <div>
-                    <h2 style="font-size: 1.5rem; font-weight: 800;">Cardápio de Sobremesas</h2>
-                    <p style="font-size: 0.85rem; color: var(--slate-gray);">Escolha seus picolés gourmet ou tortas no pote favoritos.</p>
+                    <h2>Cardápio Gourmet</h2>
+                    <p style="font-size:0.85rem; color: var(--slate-gray);">Selecione os picolés e sobremesas desejados</p>
                 </div>
-
                 <div class="search-box">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" id="search-input" onkeyup="filtrarCardapio()" placeholder="Buscar por sabor ex: Nutella, Morango..." class="search-input">
+                    <input type="text" id="input-busca" oninput="filtrarProdutos()" placeholder="Buscar sabor..." class="search-input">
                 </div>
             </div>
 
-            <!-- Filter Buttons -->
+            <!-- Category Filter Tabs -->
             <div class="filter-tabs">
-                <button onclick="filtrarCategoria('Todos')" id="tab-Todos" class="tab-btn active">
-                    <i class="fa-solid fa-border-all"></i> Todos os Sabores
+                <button onclick="filtrarCategoria('todos')" class="tab-btn active" id="tab-todos">
+                    <i class="fa-solid fa-border-all"></i> Todos
                 </button>
-                <button onclick="filtrarCategoria('Picolé')" id="tab-Picolé" class="tab-btn">
-                    <i class="fa-solid fa-ice-cream"></i> Picolés (R$ 7,00)
+                <button onclick="filtrarCategoria('picoles')" class="tab-btn" id="tab-picoles">
+                    <i class="fa-solid fa-ice-cream"></i> Picolés Gourmet
                 </button>
-                <button onclick="filtrarCategoria('Torta no Pote')" id="tab-Torta no Pote" class="tab-btn">
-                    <i class="fa-solid fa-cookie-bite"></i> Tortas no Pote (R$ 10,00)
+                <button onclick="filtrarCategoria('tortas')" class="tab-btn" id="tab-tortas">
+                    <i class="fa-solid fa-jar"></i> Tortas no Pote
                 </button>
             </div>
 
             <!-- Products Grid Container -->
-            <div id="produtos-grid" class="products-grid">
-                <!-- Dynamically populated via JS -->
-            </div>
-
-            <!-- Empty Search Results Placeholder -->
-            <div id="no-results" class="empty-box" style="display: none; margin-top: 2rem;">
-                <div class="empty-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-                <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem;">Nenhum sabor encontrado</h3>
-                <p style="font-size: 0.85rem; color: var(--slate-gray); margin-bottom: 1rem;">Tente pesquisar outro termo ou altere a categoria selecionada.</p>
-                <button onclick="limparFiltros()" class="btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.85rem; margin: 0 auto;">Limpar Filtros</button>
-            </div>
+            <div id="grid-produtos" class="products-grid"></div>
         </section>
 
-        <!-- SCREEN 3: CARRINHO -->
+        <!-- SCREEN 3: CARRINHO E CHECKOUT -->
         <section id="tela-carrinho" class="tela">
-            <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1.2rem;">Seu Pedido</h2>
+            <div style="margin-bottom: 1.5rem;">
+                <h2>Seu Pedido</h2>
+                <p style="font-size:0.85rem; color: var(--slate-gray);">Revise seus itens e informe os dados para retirada</p>
+            </div>
 
-            <!-- Mandatory Pickup Notice Banner -->
             <div class="cart-notice">
-                <i class="fa-solid fa-store"></i>
+                <i class="fa-solid fa-triangle-exclamation"></i>
                 <div>
-                    <strong>TIPO DE PEDIDO: RETIRADA NO LOCAL</strong>
-                    <p style="font-size: 0.78rem; margin-top: 0.1rem;">Não fazemos entregas. Seu pedido será separado para busca no balcão.</p>
+                    <strong>Atenção:</strong> Realizamos apenas <strong>Retirada no Local</strong>. Não fazemos entregas à domicílio!
                 </div>
             </div>
 
             <div class="cart-layout">
-                <!-- Items List -->
-                <div>
-                    <div id="carrinho-itens" class="cart-items-container">
-                        <!-- JS Dynamic Insert -->
-                    </div>
+                <!-- Cart Items List -->
+                <div id="container-itens-carrinho" class="cart-items-container"></div>
 
-                    <!-- Empty Cart Notice -->
-                    <div id="carrinho-vazio" class="empty-box">
-                        <div class="empty-icon"><i class="fa-solid fa-basket-shopping"></i></div>
-                        <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem;">Seu carrinho está vazio</h3>
-                        <p style="font-size: 0.85rem; color: var(--slate-gray); margin-bottom: 1.2rem;">Adicione deliciosos picolés gourmet ou tortas no pote para continuar.</p>
-                        <button onclick="abrirTela('tela-cardapio')" class="btn-primary" style="margin: 0 auto;">
-                            Ir ao Cardápio
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Checkout Form & Totals -->
-                <div id="checkout-section" class="checkout-box" style="display: none;">
-                    <h3 class="checkout-title"><i class="fa-solid fa-clipboard-list" style="color: var(--coral);"></i> Dados para Retirada</h3>
-
+                <!-- Summary & Order Form -->
+                <div class="checkout-box">
+                    <h3 class="checkout-title"><i class="fa-solid fa-receipt"></i> Resumo do Pedido</h3>
+                    
                     <div class="summary-row">
-                        <span>Modalidade:</span>
-                        <strong style="color: var(--amber);">Retirada no Balcão</strong>
+                        <span>Quantidade total:</span>
+                        <span id="resumo-qtd-total">0 itens</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Taxa de Entrega:</span>
+                        <span style="color: var(--emerald); font-weight: 700;">R$ 0,00 (Retirada)</span>
                     </div>
 
                     <div class="summary-total">
                         <span>Total:</span>
-                        <span id="total-valor" class="total-price">R$ 0,00</span>
+                        <span id="resumo-preco-total" class="total-price">R$ 0,00</span>
                     </div>
 
-                    <form id="form-pedido" onsubmit="enviarPedidoWhatsApp(event)">
+                    <form onsubmit="finalizarPedidoWhatsApp(event)">
                         <div class="form-group">
-                            <label class="form-label">Seu Nome Completo *</label>
-                            <input type="text" id="cliente-nome" required placeholder="Quem irá buscar o pedido" class="form-input">
+                            <label class="form-label" for="cliente-nome">Seu Nome Completo *</label>
+                            <input type="text" id="cliente-nome" class="form-input" placeholder="Digite seu nome" required>
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label">Horário Estimado de Retirada *</label>
-                            <input type="text" id="cliente-horario" required placeholder="Ex: Daqui a 30 min, ou às 16:00h" class="form-input">
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Forma de Pagamento no Balcão *</label>
-                            <select id="cliente-pagamento" onchange="tratarOpcaoPagamento()" class="form-select">
-                                <option value="Pix">Pix (chave informada na confirmação)</option>
-                                <option value="Cartão de Crédito/Débito">Cartão de Crédito ou Débito</option>
+                            <label class="form-label" for="forma-pagamento">Forma de Pagamento na Retirada *</label>
+                            <select id="forma-pagamento" class="form-select" required>
+                                <option value="">Selecione...</option>
+                                <option value="Pix">Pix</option>
+                                <option value="Cartão de Débito">Cartão de Débito</option>
+                                <option value="Cartão de Crédito">Cartão de Crédito</option>
                                 <option value="Dinheiro">Dinheiro</option>
                             </select>
                         </div>
 
-                        <!-- Conditional Cash Change Field -->
-                        <div id="campo-troco" class="form-group" style="display: none;">
-                            <label class="form-label" style="color: var(--amber);">Troco para quanto? (R$)</label>
-                            <input type="text" id="cliente-troco" placeholder="Ex: Nota de R$ 50,00" class="form-input" style="border-color: #fcd34d; background-color: #fffbeb;">
-                        </div>
-
                         <div class="form-group">
-                            <label class="form-label">Observações (opcional)</label>
-                            <input type="text" id="cliente-obs" placeholder="Ex: Embalar bem congelado para viagem" class="form-input">
+                            <label class="form-label" for="observacao">Observações (opcional)</label>
+                            <input type="text" id="observacao" class="form-input" placeholder="Ex: Retiro em 20 minutos">
                         </div>
 
-                        <button type="submit" id="btn-finalizar" class="btn-whatsapp" style="margin-top: 1.2rem;">
-                            <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Enviar Pedido via WhatsApp
+                        <button type="submit" id="btn-finalizar" class="btn-whatsapp">
+                            <i class="fa-brands fa-whatsapp"></i> Enviar Pedido via WhatsApp
                         </button>
                     </form>
                 </div>
             </div>
         </section>
 
-        <!-- SCREEN 4: CONTATO & LOCAL -->
+        <!-- SCREEN 4: ONDE RETIRAR -->
         <section id="tela-contato" class="tela">
             <div class="contact-card">
-                <div class="logo-icon" style="margin: 0 auto 1.2rem auto; width: 56px; height: 56px; font-size: 1.6rem;">
-                    <i class="fa-solid fa-store"></i>
+                <div class="logo-icon" style="margin: 0 auto 1rem auto; width:60px; height:60px; font-size:1.8rem;">
+                    <i class="fa-solid fa-location-dot"></i>
                 </div>
-                <h2 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 0.4rem;">Local de Retirada & Contato</h2>
-                <p style="font-size: 0.88rem; color: var(--slate-gray);">Faça seu pedido online e venha buscar suas sobremesas congeladas!</p>
+                <h2>Onde Retirar seu Pedido</h2>
+                <p style="color: var(--slate-gray); margin-top:0.4rem;">Faça seu pedido online e venha buscar suas sobremesas geladinhas diretamente conosco!</p>
 
                 <div class="contact-grid">
-                    <a href="https://wa.me/5581983460903" target="_blank" class="contact-item">
+                    <a href="https://wa.me/5500000000000" target="_blank" class="contact-item">
                         <div class="contact-item-icon bg-wa"><i class="fa-brands fa-whatsapp"></i></div>
                         <div>
-                            <span style="font-size: 0.7rem; font-weight: 700; color: var(--emerald); text-transform: uppercase;">WhatsApp Oficial</span>
-                            <h4 style="font-size: 0.95rem; font-weight: 700;">(81) 98346-0903</h4>
-                            <p style="font-size: 0.75rem; color: var(--slate-gray);">Clique para enviar mensagem</p>
+                            <strong>WhatsApp</strong>
+                            <p style="font-size:0.8rem; color: var(--slate-gray);">Faça e confirme seu pedido</p>
                         </div>
                     </a>
 
-                    <a href="https://instagram.com/ju.picole_gourmet" target="_blank" class="contact-item">
+                    <a href="#" target="_blank" class="contact-item">
                         <div class="contact-item-icon bg-ig"><i class="fa-brands fa-instagram"></i></div>
                         <div>
-                            <span style="font-size: 0.7rem; font-weight: 700; color: var(--pink-magenta); text-transform: uppercase;">Instagram</span>
-                            <h4 style="font-size: 0.95rem; font-weight: 700;">@ju.picole_gourmet</h4>
-                            <p style="font-size: 0.75rem; color: var(--slate-gray);">Acompanhe fotos e novidades</p>
+                            <strong>Instagram</strong>
+                            <p style="font-size:0.8rem; color: var(--slate-gray);">Siga para novidades e fotos</p>
                         </div>
                     </a>
                 </div>
 
-                <div style="background-color: #fff1f2; border: 1px solid #fecdd3; padding: 1.2rem; border-radius: 16px; text-align: left; font-size: 0.85rem; color: var(--dark);">
-                    <h4 style="font-weight: 800; color: var(--pink-magenta); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem;">
-                        <i class="fa-solid fa-circle-info"></i> Informações da Retirada:
-                    </h4>
-                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem;">
-                        <li>📍 <strong>Endereço Exato:</strong> O endereço completo para a busca é enviado no seu WhatsApp assim que você envia o pedido!</li>
-                        <li>⏰ <strong>Horário de Funcionamento:</strong> Terça a Domingo, das 10:00h às 20:00h.</li>
-                        <li>❄️ <strong>Embalagem Especial:</strong> Preparamos seus picolés e tortas bem congelados para garantirem o trajeto até a sua casa.</li>
-                    </ul>
+                <div style="background-color: var(--light-gray); padding: 1.2rem; border-radius: 16px; text-align: left;">
+                    <p style="font-weight:700; margin-bottom:0.4rem;"><i class="fa-solid fa-clock" style="color: var(--coral);"></i> Horário de Retirada:</p>
+                    <p style="font-size:0.85rem; color: var(--slate-gray);">Terça a Domingo - das 12:00 às 19:00</p>
+                    <p style="font-weight:700; margin-top:0.8rem; margin-bottom:0.4rem;"><i class="fa-solid fa-map-pin" style="color: var(--coral);"></i> Endereço:</p>
+                    <p style="font-size:0.85rem; color: var(--slate-gray);">Rua Gourmet, 123 - Centro - Ponto de Retirada no Balcão</p>
                 </div>
             </div>
         </section>
@@ -1343,411 +1307,216 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p style="font-weight: 700; color: var(--dark); margin-bottom: 0.2rem;">Jú Picolé Gourmet</p>
-        <p>📍 Apenas Retirada no Local | Recife e Região</p>
-        <p style="margin-top: 0.5rem; font-size: 0.75rem;">© 2026 Jú Picolé Gourmet. Todos os direitos reservados.</p>
+        <p>&copy; Jú Picolé Gourmet. Todos os direitos reservados. Apenas Retirada no Local.</p>
     </footer>
 
-    <!-- JavaScript Application Logic -->
     <script>
-        // OFFICIAL PRODUCTS CATALOG DATASET
-        const PRODUTOS = [
-            // PICOLÉS - R$ 7,00
-            {
-                id: 1,
-                nome: "Picolé de Ninho com Morango",
-                categoria: "Picolé",
-                preco: 7.00,
-                imagem: "ninhomor.jpeg",
-                descricao: "Massa super cremosa de Leite Ninho recheada com geleia artesanal de morango."
-            },
-            {
-                id: 2,
-                nome: "Picolé de Ninho com Nutella",
-                categoria: "Picolé",
-                preco: 7.00,
-                imagem: "ninhonut.jpeg",
-                descricao: "Leite Ninho aveludado recheado com uma camada generosa de Nutella pura."
-            },
-            {
-                id: 3,
-                nome: "Picolé de Ferrero Rocher",
-                categoria: "Picolé",
-                preco: 7.00,
-                imagem: "ferreroroc.jpeg",
-                descricao: "Chocolate nobre com pedaços crocantes de avelã e recheio de avelã."
-            },
-            {
-                id: 4,
-                nome: "Picolé de Chocolate Ouro Branco",
-                categoria: "Picolé",
-                preco: 7.00,
-                imagem: "ourobran.jpeg",
-                descricao: "Massa branca trufada com flocos crocantes inspirada no clássico bombom."
-            },
-            {
-                id: 5,
-                nome: "Picolé de Paçoca com Doce de Leite",
-                categoria: "Picolé",
-                preco: 7.00,
-                imagem: "pacocdoce.jpeg",
-                descricao: "Amendoim selecionado com recheio bem cremoso de doce de leite."
-            },
-            {
-                id: 6,
-                nome: "Picolé de Morango com Geleia",
-                categoria: "Picolé",
-                preco: 7.00,
-                imagem: "morangogel.jpeg",
-                descricao: "Refrescante sabor de morango natural recheado com pedaços de fruta."
-            },
-            {
-                id: 7,
-                nome: "Picolé de Morango Cravejado",
-                categoria: "Picolé",
-                preco: 7.00,
-                imagem: "morangocrav.jpeg",
-                descricao: "Saboroso morango coberto por uma casquinha de chocolate crocante."
-            },
-            {
-                id: 8,
-                nome: "Picolé de Batom Garoto",
-                categoria: "Picolé",
-                preco: 7.00,
-                imagem: "batomg.jpeg",
-                descricao: "Inspirado no tradicional chocolate ao leite Batom Garoto."
-            },
-            {
-                id: 9,
-                nome: "Picolé de Morango Trufado",
-                categoria: "Picolé",
-                preco: 7.00,
-                imagem: "morangotruf.jpeg",
-                descricao: "Base de morango cremoso envolta com casca de trufa de chocolate."
-            },
-            {
-                id: 10,
-                nome: "Picolé de Sensação",
-                categoria: "Picolé",
-                preco: 7.00,
-                imagem: "sensac.jpeg",
-                descricao: "Equilíbrio incrível entre morango doce e ganache de chocolate meio amargo."
-            },
-            {
-                id: 11,
-                nome: "Picolé de Mousse de Maracujá",
-                categoria: "Picolé",
-                preco: 7.00,
-                imagem: "moussemarac.jpeg",
-                descricao: "Mousse leve e aveludada com aquele toque levemente azedinho da fruta."
-            },
-            {
-                id: 12,
-                nome: "Picolé de Coco Cremoso",
-                categoria: "Picolé",
-                preco: 7.00,
-                imagem: "cococrem.jpeg",
-                descricao: "Feito com coco fresco ralado e leite de coco de alta qualidade."
-            },
-            {
-                id: 13,
-                nome: "Picolé de Tablito",
-                categoria: "Picolé",
-                preco: 7.00,
-                imagem: "tablito.jpeg",
-                descricao: "Recheio central de chocolate crocante cercado por sorvete de baunilha."
-            },
-            {
-                id: 14,
-                nome: "Picolé de Chokito",
-                categoria: "Picolé",
-                preco: 7.00,
-                imagem: "chokito.jpeg",
-                descricao: "Sabor caramelo com cobertura crocante e pedacinhos de chocolate."
-            },
+        // ==========================================
+        // 1. PREVENÇÃO DE SAÍDA NO BOTÃO VOLTAR DO CELULAR
+        // ==========================================
+        (function bloquearSaidaComBotaVoltar() {
+            // Insere um estado inicial no histórico para segurar o botão voltar
+            history.pushState({ screen: 'tela-home' }, null, location.href);
 
-            // TORTAS NO POTE - R$ 10,00
-            {
-                id: 15,
-                nome: "Torta no Pote de Chocolate Ouro Branco",
-                categoria: "Torta no Pote",
-                preco: 10.00,
-                imagem: "bourobran.jpeg",
-                descricao: "Bolo molhadinho com creme de chocolate branco e pedaços de Ouro Branco."
-            },
-            {
-                id: 16,
-                nome: "Torta no Pote de Uva Cravejada",
-                categoria: "Torta no Pote",
-                preco: 10.00,
-                imagem: "uvacrav.jpeg",
-                descricao: "Uvas verdes frescas, creme de brigadeiro branco e casca crocante."
-            },
-            {
-                id: 17,
-                nome: "Torta no Pote de Morango Cravejado",
-                categoria: "Torta no Pote",
-                preco: 10.00,
-                imagem: "cmoran.jpeg",
-                descricao: "Morangos frescos, creme artesanal e cobertura de chocolate ao leite."
-            }
-        ];
+            window.addEventListener('popstate', function (event) {
+                // Sempre que o usuário clica em "Voltar" no celular, empurramos novamente o estado no histórico
+                history.pushState({ screen: 'tela-home' }, null, location.href);
 
-        // Global State
-        let carrinho = JSON.parse(localStorage.getItem('ju_picole_carrinho')) || [];
-        let categoriaAtiva = 'Todos';
+                // Se o cliente não estiver na tela principal, apenas voltamos ele para a tela inicial
+                if (typeof telaAtual !== 'undefined' && telaAtual !== 'tela-home') {
+                    abrirTela('tela-home', false);
+                }
+            });
+        })();
 
-        // Navigation Controller
-        function abrirTela(telaId) {
+        // ==========================================
+        // 2. NAVEGAÇÃO ENTRE TELAS
+        // ==========================================
+        let telaAtual = 'tela-home';
+
+        function abrirTela(idTela, push = true) {
             document.querySelectorAll('.tela').forEach(t => t.classList.remove('active'));
-
-            const telaTarget = document.getElementById(telaId);
-            if (telaTarget) {
-                telaTarget.classList.add('active');
+            const target = document.getElementById(idTela);
+            if (target) {
+                target.classList.add('active');
+                telaAtual = idTela;
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            if (push) {
+                history.pushState({ screen: idTela }, null, location.href);
             }
         }
 
-        // Render Product Cards Grid
-        function renderizarProdutos(lista = PRODUTOS) {
-            const grid = document.getElementById('produtos-grid');
-            const noResults = document.getElementById('no-results');
+        // ==========================================
+        // 3. DADOS DE PRODUTOS E CARRINHO
+        // ==========================================
+        const produtos = [
+            { id: 1, nome: "Picolé Ninho com Nutella", categoria: "picoles", preco: 8.50, desc: "Picolé artesanal de leite ninho recheado com pura Nutella.", badge: "Mais Vendido" },
+            { id: 2, nome: "Picolé Morango com Condensado", categoria: "picoles", preco: 7.50, desc: "Picolé de morango natural recheado com leite condensado.", badge: "Gourmet" },
+            { id: 3, nome: "Picolé Pistache Supremo", categoria: "picoles", preco: 10.00, desc: "Picolé cremoso de pistache com pedaços selecionados.", badge: "Premium" },
+            { id: 4, nome: "Torta no Pote Ouro Branco", categoria: "tortas", preco: 14.00, desc: "Camadas de creme especial, bolo fofinho e pedaços de Ouro Branco.", badge: "Sobremesa" },
+            { id: 5, nome: "Torta no Pote Red Velvet", categoria: "tortas", preco: 15.00, desc: "Massa red velvet macia com cobertura e recheio ninho cremoso.", badge: "Especial" }
+        ];
 
-            if (lista.length === 0) {
-                grid.innerHTML = '';
-                noResults.style.display = 'block';
+        let carrinho = [];
+        let categoriaAtiva = 'todos';
+
+        function renderizarProdutos() {
+            const grid = document.getElementById('grid-produtos');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            const busca = document.getElementById('input-busca')?.value.toLowerCase() || '';
+
+            const filtrados = produtos.filter(p => {
+                const bateCategoria = (categoriaAtiva === 'todos') || (p.categoria === categoriaAtiva);
+                const bateBusca = p.nome.toLowerCase().includes(busca) || p.desc.toLowerCase().includes(busca);
+                return bateCategoria && bateBusca;
+            });
+
+            if (filtrados.length === 0) {
+                grid.innerHTML = `<div class="empty-box" style="grid-column: 1/-1;">
+                    <i class="fa-solid fa-cookie-bite empty-icon"></i>
+                    <p>Nenhum produto encontrado.</p>
+                </div>`;
                 return;
             }
 
-            noResults.style.display = 'none';
-            grid.innerHTML = lista.map(p => `
-                <div class="product-card">
-                    <div class="product-img-wrapper">
-                        <img src="${p.imagem}" alt="${p.nome}" class="product-img" onerror="this.src='https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=500&q=80'">
-                        <span class="product-badge">
-                            <i class="fa-solid ${p.categoria === 'Picolé' ? 'fa-ice-cream' : 'fa-cookie-bite'}" style="color: var(--pink-magenta);"></i>
-                            ${p.categoria}
-                        </span>
-                        <span class="product-price">R$ ${p.preco.toFixed(2).replace('.', ',')}</span>
-                    </div>
-
-                    <div class="product-info">
-                        <div>
-                            <h3 class="product-name">${p.nome}</h3>
-                            <p class="product-desc">${p.descricao}</p>
+            filtrados.forEach(p => {
+                grid.innerHTML += `
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <div class="product-badge">${p.badge}</div>
+                            <div class="product-price">R$ ${p.preco.toFixed(2).replace('.', ',')}</div>
                         </div>
-
-                        <button onclick="adicionarAoCarrinho(${p.id})" class="btn-add-cart">
-                            <i class="fa-solid fa-plus"></i> Adicionar
-                        </button>
+                        <div class="product-info">
+                            <div>
+                                <h3 class="product-name">${p.nome}</h3>
+                                <p class="product-desc">${p.desc}</p>
+                            </div>
+                            <button onclick="adicionarAoCarrinho(${p.id})" class="btn-add-cart">
+                                <i class="fa-solid fa-cart-plus"></i> Adicionar
+                            </button>
+                        </div>
                     </div>
-                </div>
-            `).join('');
+                `;
+            });
         }
 
-        // Filter Categories
-        function filtrarCategoria(categoria) {
-            categoriaAtiva = categoria;
+        function filtrarCategoria(cat) {
+            categoriaAtiva = cat;
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            const btnAtivo = document.getElementById(`tab-${cat}`);
+            if (btnAtivo) btnAtivo.classList.add('active');
+            renderizarProdutos();
+        }
 
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+        function filtrarProdutos() {
+            renderizarProdutos();
+        }
 
-            const btnAtivo = document.getElementById(`tab-${categoria}`);
-            if (btnAtivo) {
-                btnAtivo.classList.add('active');
+        function adicionarAoCarrinho(id) {
+            const prod = produtos.find(p => p.id === id);
+            if (!prod) return;
+
+            const item = carrinho.find(i => i.id === id);
+            if (item) {
+                item.qtd++;
+            } else {
+                carrinho.push({ ...prod, qtd: 1 });
             }
 
-            filtrarCardapio();
+            atualizarCarrinho();
+            mostrarToast(`${prod.nome} adicionado ao pedido!`);
         }
 
-        // Live Search Input Handler
-        function filtrarCardapio() {
-            const query = document.getElementById('search-input').value.toLowerCase().trim();
+        function alterarQtd(id, delta) {
+            const item = carrinho.find(i => i.id === id);
+            if (!item) return;
 
-            const filtrados = PRODUTOS.filter(item => {
-                const atendeCategoria = (categoriaAtiva === 'Todos') || (item.categoria === categoriaAtiva);
-                const atendeBusca = item.nome.toLowerCase().includes(query) || item.descricao.toLowerCase().includes(query);
-                return atendeCategoria && atendeBusca;
-            });
-
-            renderizarProdutos(filtrados);
-        }
-
-        function limparFiltros() {
-            document.getElementById('search-input').value = '';
-            filtrarCategoria('Todos');
-        }
-
-        // Cart State Synchronization
-        function salvarCarrinho() {
-            localStorage.setItem('ju_picole_carrinho', JSON.stringify(carrinho));
+            item.qtd += delta;
+            if (item.qtd <= 0) {
+                carrinho = carrinho.filter(i => i.id !== id);
+            }
             atualizarCarrinho();
         }
 
-        function adicionarAoCarrinho(idProduto) {
-            const produto = PRODUTOS.find(p => p.id === idProduto);
-            if (!produto) return;
-
-            const itemExistente = carrinho.find(item => item.id === idProduto);
-
-            if (itemExistente) {
-                itemExistente.quantidade += 1;
-            } else {
-                carrinho.push({ ...produto, quantidade: 1 });
-            }
-
-            salvarCarrinho();
-            mostrarToast(`"${produto.nome}" adicionado!`);
+        function removerItem(id) {
+            carrinho = carrinho.filter(i => i.id !== id);
+            atualizarCarrinho();
         }
 
-        function alterarQuantidade(idProduto, delta) {
-            const item = carrinho.find(i => i.id === idProduto);
-            if (!item) return;
-
-            item.quantidade += delta;
-
-            if (item.quantidade <= 0) {
-                carrinho = carrinho.filter(i => i.id !== idProduto);
-            }
-
-            salvarCarrinho();
-        }
-
-        function removerDoCarrinho(idProduto) {
-            carrinho = carrinho.filter(i => i.id !== idProduto);
-            salvarCarrinho();
-            mostrarToast('Item removido do pedido.');
-        }
-
-        // Update Cart Interface
         function atualizarCarrinho() {
-            const cartBadge = document.getElementById('cart-badge');
-            const carrinhoItens = document.getElementById('carrinho-itens');
-            const carrinhoVazio = document.getElementById('carrinho-vazio');
-            const checkoutSection = document.getElementById('checkout-section');
-            const totalElem = document.getElementById('total-valor');
+            const container = document.getElementById('container-itens-carrinho');
+            const totalBadge = document.getElementById('cart-badge');
+            const totalQtdResumo = document.getElementById('resumo-qtd-total');
+            const totalPrecoResumo = document.getElementById('resumo-preco-total');
+            const btnFinalizar = document.getElementById('btn-finalizar');
 
-            const totalQuantidade = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
-            const totalPreco = carrinho.reduce((acc, item) => acc + (item.preco * item.quantidade), 0);
+            const totalQtd = carrinho.reduce((sum, item) => sum + item.qtd, 0);
+            const totalPreco = carrinho.reduce((sum, item) => sum + (item.preco * item.qtd), 0);
 
-            cartBadge.innerText = totalQuantidade;
+            if (totalBadge) totalBadge.innerText = totalQtd;
+            if (totalQtdResumo) totalQtdResumo.innerText = `${totalQtd} ${totalQtd === 1 ? 'item' : 'itens'}`;
+            if (totalPrecoResumo) totalPrecoResumo.innerText = `R$ ${totalPreco.toFixed(2).replace('.', ',')}`;
+
+            if (btnFinalizar) btnFinalizar.disabled = carrinho.length === 0;
+
+            if (!container) return;
 
             if (carrinho.length === 0) {
-                carrinhoItens.innerHTML = '';
-                carrinhoVazio.style.display = 'block';
-                checkoutSection.style.display = 'none';
-                totalElem.innerText = 'R$ 0,00';
+                container.innerHTML = `
+                    <div class="empty-box">
+                        <i class="fa-solid fa-basket-shopping empty-icon"></i>
+                        <h3>Sua sacola está vazia</h3>
+                        <p style="font-size:0.85rem; color: var(--slate-gray); margin-bottom: 1.2rem;">Adicione deliciosos picolés e sobremesas no cardápio!</p>
+                        <button onclick="abrirTela('tela-cardapio')" class="btn-primary" style="margin: 0 auto;">
+                            <i class="fa-solid fa-utensils"></i> Ir para o Cardápio
+                        </button>
+                    </div>
+                `;
                 return;
             }
 
-            carrinhoVazio.style.display = 'none';
-            checkoutSection.style.display = 'block';
-
-            carrinhoItens.innerHTML = carrinho.map(item => `
-                <div class="cart-item-card">
-                    <div class="cart-item-details">
-                        <img src="${item.imagem}" alt="${item.nome}" class="cart-item-img" onerror="this.src='https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=500&q=80'">
-                        <div>
-                            <h4 class="cart-item-title">${item.nome}</h4>
-                            <span class="cart-item-unit">R$ ${item.preco.toFixed(2).replace('.', ',')} un</span>
+            container.innerHTML = '';
+            carrinho.forEach(item => {
+                container.innerHTML += `
+                    <div class="cart-item-card">
+                        <div class="cart-item-details">
+                            <div>
+                                <h4 class="cart-item-title">${item.nome}</h4>
+                                <span class="cart-item-unit">R$ ${item.preco.toFixed(2).replace('.', ',')} un.</span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div style="display: flex; items-center; gap: 0.8rem;">
                         <div class="qty-controls">
-                            <button onclick="alterarQuantidade(${item.id}, -1)" class="qty-btn">-</button>
-                            <span class="qty-value">${item.quantidade}</span>
-                            <button onclick="alterarQuantidade(${item.id}, 1)" class="qty-btn">+</button>
+                            <button type="button" onclick="alterarQtd(${item.id}, -1)" class="qty-btn">-</button>
+                            <span class="qty-value">${item.qtd}</span>
+                            <button type="button" onclick="alterarQtd(${item.id}, 1)" class="qty-btn">+</button>
                         </div>
 
-                        <span class="cart-item-total">
-                            R$ ${(item.preco * item.quantidade).toFixed(2).replace('.', ',')}
-                        </span>
+                        <div class="cart-item-total">
+                            R$ ${(item.preco * item.qtd).toFixed(2).replace('.', ',')}
+                        </div>
 
-                        <button onclick="removerDoCarrinho(${item.id})" class="btn-remove" title="Remover item">
+                        <button type="button" onclick="removerItem(${item.id})" class="btn-remove" title="Remover item">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </div>
-                </div>
-            `).join('');
-
-            totalElem.innerText = `R$ ${totalPreco.toFixed(2).replace('.', ',')}`;
-        }
-
-        // Toggle Cash Change Input
-        function tratarOpcaoPagamento() {
-            const pagamento = document.getElementById('cliente-pagamento').value;
-            const campoTroco = document.getElementById('campo-troco');
-
-            if (pagamento === 'Dinheiro') {
-                campoTroco.style.display = 'block';
-            } else {
-                campoTroco.style.display = 'none';
-            }
-        }
-
-        // Send WhatsApp Message Formatting
-        function enviarPedidoWhatsApp(e) {
-            e.preventDefault();
-
-            if (carrinho.length === 0) {
-                mostrarToast('Seu carrinho está vazio!');
-                return;
-            }
-
-            const nome = document.getElementById('cliente-nome').value.trim();
-            const horario = document.getElementById('cliente-horario').value.trim();
-            const pagamento = document.getElementById('cliente-pagamento').value;
-            const troco = document.getElementById('cliente-troco').value.trim();
-            const obs = document.getElementById('cliente-obs').value.trim();
-
-            const total = carrinho.reduce((acc, item) => acc + (item.preco * item.quantidade), 0);
-
-            // Message Body Structure
-            let msg = `🍧 *PEDIDO DE RETIRADA - JÚ PICOLÉ GOURMET* 🍧\n`;
-            msg += `------------------------------------\n`;
-            msg += `📍 *TIPO: RETIRADA NO LOCAL (SEM ENTREGA)*\n`;
-            msg += `------------------------------------\n\n`;
-            msg += `👤 *Cliente:* ${nome}\n`;
-            msg += `⏰ *Previsão de Retirada:* ${horario}\n`;
-            msg += `💳 *Pagamento:* ${pagamento}\n`;
-
-            if (pagamento === 'Dinheiro' && troco) {
-                msg += `💵 *Troco para:* ${troco}\n`;
-            }
-
-            if (obs) msg += `📝 *Observações:* ${obs}\n`;
-
-            msg += `\n🛒 *ITENS DO PEDIDO:*\n`;
-            carrinho.forEach(item => {
-                const itemTotal = (item.preco * item.quantidade).toFixed(2).replace('.', ',');
-                msg += `▪️ ${item.quantidade}x ${item.nome} - R$ ${itemTotal}\n`;
+                `;
             });
-
-            msg += `\n💰 *TOTAL:* R$ ${total.toFixed(2).replace('.', ',')}\n\n`;
-            msg += `Aguardo a confirmação e o endereço para busca! ✨`;
-
-            const phone = "5581983460903";
-            const encodedText = encodeURIComponent(msg);
-            const whatsappUrl = `https://wa.me/${phone}?text=${encodedText}`;
-
-            window.open(whatsappUrl, '_blank');
         }
 
-        // Custom Toast Popup Notification
         function mostrarToast(mensagem) {
             const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
+            if (!container) return;
 
+            const toast = document.createElement('div');
             toast.className = 'toast';
-            toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>${mensagem}</span>`;
+            toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${mensagem}`;
 
             container.appendChild(toast);
-
-            setTimeout(() => {
-                toast.classList.add('show');
-            }, 10);
+            setTimeout(() => toast.classList.add('show'), 10);
 
             setTimeout(() => {
                 toast.classList.remove('show');
@@ -1755,11 +1524,41 @@
             }, 2500);
         }
 
-        // Page Load Initialization
-        window.onload = function() {
+        function finalizarPedidoWhatsApp(e) {
+            e.preventDefault();
+            if (carrinho.length === 0) return;
+
+            const nome = document.getElementById('cliente-nome').value.trim();
+            const pagamento = document.getElementById('forma-pagamento').value;
+            const obs = document.getElementById('observacao').value.trim();
+
+            let mensagem = `*NOVO PEDIDO DE RETIRADA - JÚ PICOLÉ GOURMET*\n`;
+            mensagem += `--------------------------------------\n`;
+            mensagem += `*Cliente:* ${nome}\n`;
+            mensagem += `*Pagamento na Retirada:* ${pagamento}\n`;
+            if (obs) mensagem += `*Observações:* ${obs}\n`;
+            mensagem += `--------------------------------------\n`;
+            mensagem += `*ITENS DO PEDIDO:*\n`;
+
+            carrinho.forEach(item => {
+                mensagem += `• ${item.qtd}x ${item.nome} - R$ ${(item.preco * item.qtd).toFixed(2).replace('.', ',')}\n`;
+            });
+
+            const totalPreco = carrinho.reduce((sum, item) => sum + (item.preco * item.qtd), 0);
+            mensagem += `--------------------------------------\n`;
+            mensagem += `*TOTAL:* R$ ${totalPreco.toFixed(2).replace('.', ',')}\n`;
+            mensagem += `*FORMA DE ENTREGA:* 📍 Retirada no Balcão\n`;
+
+            const foneWhatsApp = "5500000000000"; // Substitua pelo seu número do WhatsApp com DDD
+            const url = `https://wa.me/${foneWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+            window.open(url, '_blank');
+        }
+
+        // Inicializar aplicação ao carregar
+        window.addEventListener('DOMContentLoaded', () => {
             renderizarProdutos();
             atualizarCarrinho();
-        };
+        });
     </script>
 </body>
 </html>
