@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jú Picolé Gourmet | Apenas Retirada no Local</title>
+    
+    <!-- Font Awesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --coral: #ff6f61;
+            --pink-magenta: #c11c84;
+            --soft-pink: #f7cac9;
+            --purple: #800080;
+            --dark: #2d1b2d;
+            --bg-light: #fffaf7;
+            --white: #ffffff;
+            --slate-gray: #64748b;
+            --light-gray: #f1f5f9;
+            --emerald: #10b981;
+            --amber: #f59e0b;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 25px -5px rgba(193, 28, 132, 0.12);
+            --shadow-lg: 0 20px 35px -10px rgba(193, 28, 132, 0.22);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            line-height: 1.5;
+        }
+
+        /* Announcement Bar */
+        .pickup-bar {
+            background: linear-gradient(90deg, var(--purple), var(--pink-magenta), var(--coral));
+            color: var(--white);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.6rem 1rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .pickup-bar i {
+            color: #fef08a;
+            font-size: 1rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        /* Header Navigation */
+        .header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(247, 202, 201, 0.6);
+            position: sticky;
+            top: 38px;
+            z-index: 90;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-container {
+            max-w: 1150px;
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 0.8rem 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--pink-magenta), var(--coral));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.3rem;
+            box-shadow: 0 4px 12px rgba(255, 111, 97, 0.35);
+            transition: var(--transition);
+        }
+
+        .logo:hover .logo-icon {
+            transform: scale(1.08) rotate(-5deg);
+        }
+
+        .logo-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--dark);
+            line-height: 1.1;
+        }
+
+        .logo-title span {
+            color: var(--pink-magenta);
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .logo-subtitle {
+            font-size: 0.65rem;
+            color: var(--coral);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Nav Buttons */
+        .nav-desktop {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--dark);
+            cursor: pointer;
+            padding: 0.5rem 0.8rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .nav-btn i {
+            color: var(--coral);
+        }
+
+        .nav-btn:hover {
+            color: var(--pink-magenta);
+            background-color: var(--bg-light);
+        }
+
+        .cart-trigger {
+            background: linear-gradient(135deg, var(--coral), var(--pink-magenta));
+            color: var(--white);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(193, 28, 132, 0.3);
+            transition: var(--transition);
+        }
+
+        .cart-trigger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(193, 28, 132, 0.4);
+            filter: brightness(1.05);
+        }
+
+        .cart-badge {
+            background-color: var(--white);
+            color: var(--pink-magenta);
+            font-size: 0.75rem;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        /* Mobile Bottom Navigation */
+        .mobile-nav {
+            display: none;
+            background: var(--white);
+            border-top: 1px solid var(--soft-pink);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 0.5rem 1rem;
+            justify-content: space-around;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.05);
+        }
+
+        .mobile-nav-btn {
+            background: none;
+            border: none;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--slate-gray);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.2rem;
+            cursor: pointer;
+        }
+
+        .mobile-nav-btn i {
+            font-size: 1.1rem;
+            color: var(--coral);
+        }
+
+        /* Layout Main */
+        .main-container {
+            max-width: 1150px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem 1.2rem 4rem 1.2rem;
+            flex-grow: 1;
+        }
+
+        .tela {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        .tela.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Banner (Home) */
+        .hero-card {
+            background: linear-gradient(135deg, var(--purple) 0%, var(--pink-magenta) 50%, var(--coral) 100%);
+            border-radius: 28px;
+            padding: 3rem 2rem;
+            color: var(--white);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(255, 255, 255, 0.22);
+            backdrop-filter: blur(8px);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-title {
+            font-size: 2.3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            max-width: 650px;
+        }
+
+        .hero-desc {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 580px;
+            margin-bottom: 1.8rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--white);
+            color: var(--pink-magenta);
+            border: none;
+            padding: 0.85rem 1.8rem;
+            border-radius: 16px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            background-color: #fffaf7;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 0.85rem 1.5rem;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: var(--transition);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 0, 0, 0.35);
+        }
+
+        /* Cards Grid (Home) */
+        .home-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 1.8rem;
+            border: 1px solid rgba(247, 202, 201, 0.6);
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--coral);
+        }
+
+        .feature-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .card-menu .feature-icon { background-color: rgba(255, 111, 97, 0.12); color: var(--coral); }
+        .card-cart .feature-icon { background-color: rgba(193, 28, 132, 0.12); color: var(--pink-magenta); }
+        .card-location .feature-icon { background-color: rgba(245, 158, 11, 0.12); color: var(--amber); }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.4rem;
+        }
+
+        .feature-desc {
+            font-size: 0.85rem;
+            color: var(--slate-gray);
+            margin-bottom: 1.2rem;
+        }
+
+        .feature-link {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--coral);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* Steps Info Section */
+        .info-section {
+            background-color: var(--white);
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid rgba(247, 202, 201, 0.6);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .info-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 1.8rem;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .step-box {
+            text-align: center;
+            background: #fffdfb;
+            padding: 1.5rem 1rem;
+            border-radius: 16px;
+            border: 1px solid #fee2e2;
+        }
+
+        .step-number {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--coral), var(--pink-magenta));
+            color: var(--white);
+            font-weight: 800;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+            box-shadow: 0 4px 10px rgba(255, 111, 97, 0.3);
+        }
+
+        .step-box h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .step-box p {
+            font-size: 0.8rem;
+            color: var(--slate-gray);
+        }
+
+        /* Cardápio / Filter Bar */
+        .catalog-header {
+            background-color: var(--white);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid rgba(247, 202, 201, 0.6);
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .search-box {
+            position: relative;
+            flex-grow: 1;
+            max-width: 380px;
+            width: 100%;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--slate-gray);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.6rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            background-color: var(--light-gray);
+            font-size: 0.9rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            border-color: var(--coral);
+            background-color: var(--white);
+            box-shadow: 0 0 0 3px rgba(255, 111, 97, 0.15);
+        }
+
+        .filter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .tab-btn {
+            background-color: var(--white);
+            color: var(--dark);
+            border: 1px solid #e2e8f0;
+            padding: 0.6rem 1.2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn:hover {
+            background-color: #fff1f2;
+            border-color: var(--soft-pink);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--coral), var(--pink-magenta));
+            color: var(--white);
+            border-color: transparent;
+            box-shadow: 0 4px 12px rgba(193, 28, 132, 0.25);
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 20px;
+            border: 1px solid rgba(247, 202, 201, 0.6);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .product-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            background-color: #fdf2f2;
+            overflow: hidden;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.06);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(6px);
+            padding: 0.25rem 0.6rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--dark);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .product-price {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: var(--pink-magenta);
+            color: var(--white);
+            padding: 0.3rem 0.75rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .product-info {
+            padding: 1.2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.4rem;
+        }
+
+        .product-desc {
+            font-size: 0.78rem;
+            color: var(--slate-gray);
+            margin-bottom: 1.2rem;
+            line-height: 1.4;
+        }
+
+        .btn-add-cart {
+            width: 100%;
+            background-color: #fff1f2;
+            color: var(--coral);
+            border: 1px solid #fecdd3;
+            padding: 0.65rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .btn-add-cart:hover {
+            background-color: var(--coral);
+            color: var(--white);
+            border-color: var(--coral);
+            box-shadow: 0 4px 12px rgba(255, 111, 97, 0.3);
+        }
+
+        /* Carrinho Screen */
+        .cart-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .cart-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cart-notice {
+            background-color: #fffbeb;
+            border: 1px solid #fef3c7;
+            border-left: 4px solid var(--amber);
+            border-radius: 16px;
+            padding: 1rem 1.2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #78350f;
+            font-size: 0.88rem;
+        }
+
+        .cart-notice i {
+            font-size: 1.4rem;
+            color: var(--amber);
+        }
+
+        .cart-items-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .cart-item-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 1rem;
+            border: 1px solid rgba(247, 202, 201, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .cart-item-details {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .cart-item-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 12px;
+            object-fit: contain;
+            background-color: #fdf2f2;
+        }
+
+        .cart-item-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        .cart-item-unit {
+            font-size: 0.75rem;
+            color: var(--pink-magenta);
+            font-weight: 600;
+        }
+
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            padding: 0.2rem;
+            gap: 0.4rem;
+        }
+        
+        .qty-btn {
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            border: none;
+            background-color: var(--white);
+            color: var(--dark);
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .qty-btn:hover {
+            background-color: #fecdd3;
+            color: var(--pink-magenta);
+        }
+
+        .qty-value {
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 0 0.3rem;
+        }
+
+        .cart-item-total {
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: var(--dark);
+            width: 80px;
+            text-align: right;
+        }
+
+        .btn-remove {
+            background: none;
+            border: none;
+            color: var(--slate-gray);
+            cursor: pointer;
+            padding: 0.4rem;
+            transition: var(--transition);
+        }
+
+        .btn-remove:hover {
+            color: #e11d48;
+        }
+
+        /* Order Summary Box & Checkout Form */
+        .checkout-box {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid rgba(247, 202, 201, 0.6);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 100px;
+        }
+
+        .checkout-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            border-bottom: 1px solid #f1f5f9;
+            padding-bottom: 0.8rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.88rem;
+            color: var(--slate-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--dark);
+            padding-top: 0.8rem;
+            border-top: 1px solid #f1f5f9;
+            margin-top: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .total-price {
+            color: var(--pink-magenta);
+        }
+
+        /* Form Inputs */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.35rem;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 0.7rem 0.9rem;
+            border-radius: 10px;
+            border: 1px solid #cbd5e1;
+            font-size: 0.85rem;
+            outline: none;
+            transition: var(--transition);
+            background-color: #f8fafc;
+        }
+
+        .form-input:focus, .form-select:focus {
+            border-color: var(--coral);
+            background-color: var(--white);
+            box-shadow: 0 0 0 3px rgba(255, 111, 97, 0.15);
+        }
+
+        .btn-whatsapp {
+            width: 100%;
+            background-color: var(--emerald);
+            color: var(--white);
+            border: none;
+            padding: 0.9rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            transition: var(--transition);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-whatsapp:disabled {
+            background-color: #cbd5e1;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        /* Empty State */
+        .empty-box {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            background: var(--white);
+            border-radius: 20px;
+            border: 1px border-dashed #cbd5e1;
+        }
+
+        .empty-icon {
+            font-size: 3rem;
+            color: var(--soft-pink);
+            margin-bottom: 1rem;
+        }
+
+        /* Contato Screen */
+        .contact-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 2.5rem 2rem;
+            border: 1px solid rgba(247, 202, 201, 0.6);
+            box-shadow: var(--shadow-sm);
+            max-width: 680px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.2rem;
+            margin: 1.8rem 0;
+            text-align: left;
+        }
+
+        .contact-item {
+            background-color: #fffaf7;
+            border: 1px solid #fee2e2;
+            padding: 1.2rem;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--coral);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-item-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+
+        .bg-wa { background-color: var(--emerald); }
+        .bg-ig { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+
+        /* Toast Notifications */
+        #toast-container {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            pointer-events: none;
+        }
+
+        .toast {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 0.8rem 1.2rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast i {
+            color: var(--emerald);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--white);
+            border-top: 1px solid rgba(247, 202, 201, 0.6);
+            padding: 1.8rem 1rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--slate-gray);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .nav-desktop { display: none; }
+            .mobile-nav { display: flex; }
+            .header { top: 0; }
+            .hero-title { font-size: 1.8rem; }
+            .hero-card { padding: 2rem 1.5rem; }
+            #toast-container { bottom: 80px; right: 15px; left: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Pickup Bar Banner -->
+    <div class="pickup-bar">
+        <i class="fa-solid fa-store"></i>
+        <span>📍 APENAS RETIRADA NO LOCAL: Faça seu pedido online e busque conosco! (Sem Entrega)</span>
+    </div>
+
+    <!-- Header Navigation Bar -->
+    <header class="header">
+        <div class="header-container">
+            <div onclick="abrirTela('tela-home')" class="logo">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-ice-cream"></i>
+                </div>
+                <div>
+                    <h1 class="logo-title">Jú Picolé <span>Gourmet</span></h1>
+                    <p class="logo-subtitle">Mais que um picolé, uma sobremesa!</p>
+                </div>
+            </div>
+
+            <!-- Desktop Nav Links -->
+            <nav class="nav-desktop">
+                <button onclick="abrirTela('tela-home')" class="nav-btn">
+                    <i class="fa-solid fa-house"></i> Início
+                </button>
+                <button onclick="abrirTela('tela-cardapio')" class="nav-btn">
+                    <i class="fa-solid fa-utensils"></i> Cardápio
+                </button>
+                <button onclick="abrirTela('tela-contato')" class="nav-btn">
+                    <i class="fa-solid fa-location-dot"></i> Onde Retirar
+                </button>
+            </nav>
+
+            <!-- Cart Trigger Button -->
+            <button onclick="abrirTela('tela-carrinho')" class="cart-trigger">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-text">Meu Pedido</span>
+                <span id="cart-badge" class="cart-badge">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Bottom Nav -->
+    <div class="mobile-nav">
+        <button onclick="abrirTela('tela-home')" class="mobile-nav-btn">
+            <i class="fa-solid fa-house"></i> Início
+        </button>
+        <button onclick="abrirTela('tela-cardapio')" class="mobile-nav-btn">
+            <i class="fa-solid fa-utensils"></i> Cardápio
+        </button>
+        <button onclick="abrirTela('tela-contato')" class="mobile-nav-btn">
+            <i class="fa-solid fa-location-dot"></i> Retirada
+        </button>
+    </div>
+
+    <!-- Toast Floating Alert Container -->
+    <div id="toast-container"></div>
+
+    <main class="main-container">
+
+        <!-- SCREEN 1: HOME -->
+        <section id="tela-home" class="tela active">
+            <!-- Hero Banner -->
+            <div class="hero-card">
+                <span class="hero-badge"><i class="fa-solid fa-store"></i> Retirada no Balcão</span>
+                <h2 class="hero-title">Picolés Gourmet e Tortas no Pote feitas com carinho!</h2>
+                <p class="hero-desc">Monte o seu pedido online pelo nosso cardápio e passe no local para retirar suas sobremesas geladinhas.</p>
+                <div class="hero-actions">
+                    <button onclick="abrirTela('tela-cardapio')" class="btn-primary">
+                        <i class="fa-solid fa-ice-cream"></i> Ver Cardápio
+                    </button>
+                    <button onclick="abrirTela('tela-contato')" class="btn-secondary">
+                        <i class="fa-solid fa-map-pin"></i> Ver Local de Retirada
+                    </button>
+                </div>
+            </div>
+
+            <!-- Home Shortcuts Cards Grid -->
+            <div class="home-grid">
+                <div onclick="abrirTela('tela-cardapio')" class="feature-card card-menu">
+                    <div>
+                        <div class="feature-icon"><i class="fa-solid fa-utensils"></i></div>
+                        <h3 class="feature-title">Nosso Cardápio</h3>
+                        <p class="feature-desc">Escolha entre 14 sabores de picolés e tortas no pote cremosas.</p>
+                    </div>
+                    <span class="feature-link">Ver Sobremesas <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+
+                <div onclick="abrirTela('tela-carrinho')" class="feature-card card-cart">
+                    <div>
+                        <div class="feature-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+                        <h3 class="feature-title">Seu Pedido</h3>
+                        <p class="feature-desc">Confira seus doces, informe o horário e confirme pelo WhatsApp.</p>
+                    </div>
+                    <span class="feature-link">Ver Carrinho <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+
+                <div onclick="abrirTela('tela-contato')" class="feature-card card-location">
+                    <div>
+                        <div class="feature-icon"><i class="fa-solid fa-store"></i></div>
+                        <h3 class="feature-title">Local de Busca</h3>
+                        <p class="feature-desc">Veja horários de funcionamento e endereço de retirada.</p>
+                    </div>
+                    <span class="feature-link">Ver Informações <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </div>
+
+            <!-- How Pickup Works Steps -->
+            <div class="info-section">
+                <h3 class="info-title">Como funciona para retirar?</h3>
+                <div class="steps-grid">
+                    <div class="step-box">
+                        <div class="step-number">1</div>
+                        <h4>Escolha os Sabores</h4>
+                        <p>Adicione seus picolés ou tortas ao carrinho no nosso site.</p>
+                    </div>
+                    <div class="step-box">
+                        <div class="step-number">2</div>
+                        <h4>Envie pelo WhatsApp</h4>
+                        <p>Informe seu nome, forma de pagamento e horário previsto para busca.</p>
+                    </div>
+                    <div class="step-box">
+                        <div class="step-number">3</div>
+                        <h4>Retire no Local</h4>
+                        <p>Seu pedido estará embalado e geladinho esperando você!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: CARDÁPIO -->
+        <section id="tela-cardapio" class="tela">
+            <div class="catalog-header">
+                <div>
+                    <h2 style="font-size: 1.5rem; font-weight: 800;">Cardápio de Sobremesas</h2>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray);">Escolha seus picolés gourmet ou tortas no pote favoritos.</p>
+                </div>
+
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="search-input" onkeyup="filtrarCardapio()" placeholder="Buscar por sabor ex: Nutella, Morango..." class="search-input">
+                </div>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="filter-tabs">
+                <button onclick="filtrarCategoria('Todos')" id="tab-Todos" class="tab-btn active">
+                    <i class="fa-solid fa-border-all"></i> Todos os Sabores
+                </button>
+                <button onclick="filtrarCategoria('Picolé')" id="tab-Picolé" class="tab-btn">
+                    <i class="fa-solid fa-ice-cream"></i> Picolés (R$ 7,00)
+                </button>
+                <button onclick="filtrarCategoria('Torta no Pote')" id="tab-Torta no Pote" class="tab-btn">
+                    <i class="fa-solid fa-cookie-bite"></i> Tortas no Pote (R$ 10,00)
+                </button>
+            </div>
+
+            <!-- Products Grid Container -->
+            <div id="produtos-grid" class="products-grid">
+                <!-- Dynamically populated via JS -->
+            </div>
+
+            <!-- Empty Search Results Placeholder -->
+            <div id="no-results" class="empty-box" style="display: none; margin-top: 2rem;">
+                <div class="empty-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem;">Nenhum sabor encontrado</h3>
+                <p style="font-size: 0.85rem; color: var(--slate-gray); margin-bottom: 1rem;">Tente pesquisar outro termo ou altere a categoria selecionada.</p>
+                <button onclick="limparFiltros()" class="btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.85rem; margin: 0 auto;">Limpar Filtros</button>
+            </div>
+        </section>
+
+        <!-- SCREEN 3: CARRINHO -->
+        <section id="tela-carrinho" class="tela">
+            <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1.2rem;">Seu Pedido</h2>
+
+            <!-- Mandatory Pickup Notice Banner -->
+            <div class="cart-notice">
+                <i class="fa-solid fa-store"></i>
+                <div>
+                    <strong>TIPO DE PEDIDO: RETIRADA NO LOCAL</strong>
+                    <p style="font-size: 0.78rem; margin-top: 0.1rem;">Não fazemos entregas. Seu pedido será separado para busca no balcão.</p>
+                </div>
+            </div>
+
+            <div class="cart-layout">
+                <!-- Items List -->
+                <div>
+                    <div id="carrinho-itens" class="cart-items-container">
+                        <!-- JS Dynamic Insert -->
+                    </div>
+
+                    <!-- Empty Cart Notice -->
+                    <div id="carrinho-vazio" class="empty-box">
+                        <div class="empty-icon"><i class="fa-solid fa-basket-shopping"></i></div>
+                        <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem;">Seu carrinho está vazio</h3>
+                        <p style="font-size: 0.85rem; color: var(--slate-gray); margin-bottom: 1.2rem;">Adicione deliciosos picolés gourmet ou tortas no pote para continuar.</p>
+                        <button onclick="abrirTela('tela-cardapio')" class="btn-primary" style="margin: 0 auto;">
+                            Ir ao Cardápio
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Checkout Form & Totals -->
+                <div id="checkout-section" class="checkout-box" style="display: none;">
+                    <h3 class="checkout-title"><i class="fa-solid fa-clipboard-list" style="color: var(--coral);"></i> Dados para Retirada</h3>
+
+                    <div class="summary-row">
+                        <span>Modalidade:</span>
+                        <strong style="color: var(--amber);">Retirada no Balcão</strong>
+                    </div>
+
+                    <div class="summary-total">
+                        <span>Total:</span>
+                        <span id="total-valor" class="total-price">R$ 0,00</span>
+                    </div>
+
+                    <form id="form-pedido" onsubmit="enviarPedidoWhatsApp(event)">
+                        <div class="form-group">
+                            <label class="form-label">Seu Nome Completo *</label>
+                            <input type="text" id="cliente-nome" required placeholder="Quem irá buscar o pedido" class="form-input">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Horário Estimado de Retirada *</label>
+                            <input type="text" id="cliente-horario" required placeholder="Ex: Daqui a 30 min, ou às 16:00h" class="form-input">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Forma de Pagamento no Balcão *</label>
+                            <select id="cliente-pagamento" onchange="tratarOpcaoPagamento()" class="form-select">
+                                <option value="Pix">Pix (chave informada na confirmação)</option>
+                                <option value="Cartão de Crédito/Débito">Cartão de Crédito ou Débito</option>
+                                <option value="Dinheiro">Dinheiro</option>
+                            </select>
+                        </div>
+
+                        <!-- Conditional Cash Change Field -->
+                        <div id="campo-troco" class="form-group" style="display: none;">
+                            <label class="form-label" style="color: var(--amber);">Troco para quanto? (R$)</label>
+                            <input type="text" id="cliente-troco" placeholder="Ex: Nota de R$ 50,00" class="form-input" style="border-color: #fcd34d; background-color: #fffbeb;">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Observações (opcional)</label>
+                            <input type="text" id="cliente-obs" placeholder="Ex: Embalar bem congelado para viagem" class="form-input">
+                        </div>
+
+                        <button type="submit" id="btn-finalizar" class="btn-whatsapp" style="margin-top: 1.2rem;">
+                            <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Enviar Pedido via WhatsApp
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 4: CONTATO & LOCAL -->
+        <section id="tela-contato" class="tela">
+            <div class="contact-card">
+                <div class="logo-icon" style="margin: 0 auto 1.2rem auto; width: 56px; height: 56px; font-size: 1.6rem;">
+                    <i class="fa-solid fa-store"></i>
+                </div>
+                <h2 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 0.4rem;">Local de Retirada & Contato</h2>
+                <p style="font-size: 0.88rem; color: var(--slate-gray);">Faça seu pedido online e venha buscar suas sobremesas congeladas!</p>
+
+                <div class="contact-grid">
+                    <a href="https://wa.me/5581983460903" target="_blank" class="contact-item">
+                        <div class="contact-item-icon bg-wa"><i class="fa-brands fa-whatsapp"></i></div>
+                        <div>
+                            <span style="font-size: 0.7rem; font-weight: 700; color: var(--emerald); text-transform: uppercase;">WhatsApp Oficial</span>
+                            <h4 style="font-size: 0.95rem; font-weight: 700;">(81) 98346-0903</h4>
+                            <p style="font-size: 0.75rem; color: var(--slate-gray);">Clique para enviar mensagem</p>
+                        </div>
+                    </a>
+
+                    <a href="https://instagram.com/ju.picole_gourmet" target="_blank" class="contact-item">
+                        <div class="contact-item-icon bg-ig"><i class="fa-brands fa-instagram"></i></div>
+                        <div>
+                            <span style="font-size: 0.7rem; font-weight: 700; color: var(--pink-magenta); text-transform: uppercase;">Instagram</span>
+                            <h4 style="font-size: 0.95rem; font-weight: 700;">@ju.picole_gourmet</h4>
+                            <p style="font-size: 0.75rem; color: var(--slate-gray);">Acompanhe fotos e novidades</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div style="background-color: #fff1f2; border: 1px solid #fecdd3; padding: 1.2rem; border-radius: 16px; text-align: left; font-size: 0.85rem; color: var(--dark);">
+                    <h4 style="font-weight: 800; color: var(--pink-magenta); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-solid fa-circle-info"></i> Informações da Retirada:
+                    </h4>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem;">
+                        <li>📍 <strong>Endereço Exato:</strong> O endereço completo para a busca é enviado no seu WhatsApp assim que você envia o pedido!</li>
+                        <li>⏰ <strong>Horário de Funcionamento:</strong> Terça a Domingo, das 10:00h às 20:00h.</li>
+                        <li>❄️ <strong>Embalagem Especial:</strong> Preparamos seus picolés e tortas bem congelados para garantirem o trajeto até a sua casa.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p style="font-weight: 700; color: var(--dark); margin-bottom: 0.2rem;">Jú Picolé Gourmet</p>
+        <p>📍 Apenas Retirada no Local | Recife e Região</p>
+        <p style="margin-top: 0.5rem; font-size: 0.75rem;">© 2026 Jú Picolé Gourmet. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // OFFICIAL PRODUCTS CATALOG DATASET
+        const PRODUTOS = [
+            // PICOLÉS - R$ 7,00
+            {
+                id: 1,
+                nome: "Picolé de Ninho com Morango",
+                categoria: "Picolé",
+                preco: 7.00,
+                imagem: "ninhomor.jpeg",
+                descricao: "Massa super cremosa de Leite Ninho recheada com geleia artesanal de morango."
+            },
+            {
+                id: 2,
+                nome: "Picolé de Ninho com Nutella",
+                categoria: "Picolé",
+                preco: 7.00,
+                imagem: "ninhonut.jpeg",
+                descricao: "Leite Ninho aveludado recheado com uma camada generosa de Nutella pura."
+            },
+            {
+                id: 3,
+                nome: "Picolé de Ferrero Rocher",
+                categoria: "Picolé",
+                preco: 7.00,
+                imagem: "ferreroroc.jpeg",
+                descricao: "Chocolate nobre com pedaços crocantes de avelã e recheio de avelã."
+            },
+            {
+                id: 4,
+                nome: "Picolé de Chocolate Ouro Branco",
+                categoria: "Picolé",
+                preco: 7.00,
+                imagem: "ourobran.jpeg",
+                descricao: "Massa branca trufada com flocos crocantes inspirada no clássico bombom."
+            },
+            {
+                id: 5,
+                nome: "Picolé de Paçoca com Doce de Leite",
+                categoria: "Picolé",
+                preco: 7.00,
+                imagem: "pacocdoce.jpeg",
+                descricao: "Amendoim selecionado com recheio bem cremoso de doce de leite."
+            },
+            {
+                id: 6,
+                nome: "Picolé de Morango com Geleia",
+                categoria: "Picolé",
+                preco: 7.00,
+                imagem: "morangogel.jpeg",
+                descricao: "Refrescante sabor de morango natural recheado com pedaços de fruta."
+            },
+            {
+                id: 7,
+                nome: "Picolé de Morango Cravejado",
+                categoria: "Picolé",
+                preco: 7.00,
+                imagem: "morangocrav.jpeg",
+                descricao: "Saboroso morango coberto por uma casquinha de chocolate crocante."
+            },
+            {
+                id: 8,
+                nome: "Picolé de Batom Garoto",
+                categoria: "Picolé",
+                preco: 7.00,
+                imagem: "batomg.jpeg",
+                descricao: "Inspirado no tradicional chocolate ao leite Batom Garoto."
+            },
+            {
+                id: 9,
+                nome: "Picolé de Morango Trufado",
+                categoria: "Picolé",
+                preco: 7.00,
+                imagem: "morangotruf.jpeg",
+                descricao: "Base de morango cremoso envolta com casca de trufa de chocolate."
+            },
+            {
+                id: 10,
+                nome: "Picolé de Sensação",
+                categoria: "Picolé",
+                preco: 7.00,
+                imagem: "sensac.jpeg",
+                descricao: "Equilíbrio incrível entre morango doce e ganache de chocolate meio amargo."
+            },
+            {
+                id: 11,
+                nome: "Picolé de Mousse de Maracujá",
+                categoria: "Picolé",
+                preco: 7.00,
+                imagem: "moussemarac.jpeg",
+                descricao: "Mousse leve e aveludada com aquele toque levemente azedinho da fruta."
+            },
+            {
+                id: 12,
+                nome: "Picolé de Coco Cremoso",
+                categoria: "Picolé",
+                preco: 7.00,
+                imagem: "cococrem.jpeg",
+                descricao: "Feito com coco fresco ralado e leite de coco de alta qualidade."
+            },
+            {
+                id: 13,
+                nome: "Picolé de Tablito",
+                categoria: "Picolé",
+                preco: 7.00,
+                imagem: "tablito.jpeg",
+                descricao: "Recheio central de chocolate crocante cercado por sorvete de baunilha."
+            },
+            {
+                id: 14,
+                nome: "Picolé de Chokito",
+                categoria: "Picolé",
+                preco: 7.00,
+                imagem: "chokito.jpeg",
+                descricao: "Sabor caramelo com cobertura crocante e pedacinhos de chocolate."
+            },
+
+            // TORTAS NO POTE - R$ 10,00
+            {
+                id: 15,
+                nome: "Torta no Pote de Chocolate Ouro Branco",
+                categoria: "Torta no Pote",
+                preco: 10.00,
+                imagem: "bourobran.jpeg",
+                descricao: "Bolo molhadinho com creme de chocolate branco e pedaços de Ouro Branco."
+            },
+            {
+                id: 16,
+                nome: "Torta no Pote de Uva Cravejada",
+                categoria: "Torta no Pote",
+                preco: 10.00,
+                imagem: "uvacrav.jpeg",
+                descricao: "Uvas verdes frescas, creme de brigadeiro branco e casca crocante."
+            },
+            {
+                id: 17,
+                nome: "Torta no Pote de Morango Cravejado",
+                categoria: "Torta no Pote",
+                preco: 10.00,
+                imagem: "cmoran.jpeg",
+                descricao: "Morangos frescos, creme artesanal e cobertura de chocolate ao leite."
+            }
+        ];
+
+        // Global State
+        let carrinho = JSON.parse(localStorage.getItem('ju_picole_carrinho')) || [];
+        let categoriaAtiva = 'Todos';
+
+        // Navigation Controller
+        function abrirTela(telaId) {
+            document.querySelectorAll('.tela').forEach(t => t.classList.remove('active'));
+
+            const telaTarget = document.getElementById(telaId);
+            if (telaTarget) {
+                telaTarget.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Render Product Cards Grid
+        function renderizarProdutos(lista = PRODUTOS) {
+            const grid = document.getElementById('produtos-grid');
+            const noResults = document.getElementById('no-results');
+
+            if (lista.length === 0) {
+                grid.innerHTML = '';
+                noResults.style.display = 'block';
+                return;
+            }
+
+            noResults.style.display = 'none';
+            grid.innerHTML = lista.map(p => `
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <img src="${p.imagem}" alt="${p.nome}" class="product-img" onerror="this.src='https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=500&q=80'">
+                        <span class="product-badge">
+                            <i class="fa-solid ${p.categoria === 'Picolé' ? 'fa-ice-cream' : 'fa-cookie-bite'}" style="color: var(--pink-magenta);"></i>
+                            ${p.categoria}
+                        </span>
+                        <span class="product-price">R$ ${p.preco.toFixed(2).replace('.', ',')}</span>
+                    </div>
+
+                    <div class="product-info">
+                        <div>
+                            <h3 class="product-name">${p.nome}</h3>
+                            <p class="product-desc">${p.descricao}</p>
+                        </div>
+
+                        <button onclick="adicionarAoCarrinho(${p.id})" class="btn-add-cart">
+                            <i class="fa-solid fa-plus"></i> Adicionar
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter Categories
+        function filtrarCategoria(categoria) {
+            categoriaAtiva = categoria;
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            const btnAtivo = document.getElementById(`tab-${categoria}`);
+            if (btnAtivo) {
+                btnAtivo.classList.add('active');
+            }
+
+            filtrarCardapio();
+        }
+
+        // Live Search Input Handler
+        function filtrarCardapio() {
+            const query = document.getElementById('search-input').value.toLowerCase().trim();
+
+            const filtrados = PRODUTOS.filter(item => {
+                const atendeCategoria = (categoriaAtiva === 'Todos') || (item.categoria === categoriaAtiva);
+                const atendeBusca = item.nome.toLowerCase().includes(query) || item.descricao.toLowerCase().includes(query);
+                return atendeCategoria && atendeBusca;
+            });
+
+            renderizarProdutos(filtrados);
+        }
+
+        function limparFiltros() {
+            document.getElementById('search-input').value = '';
+            filtrarCategoria('Todos');
+        }
+
+        // Cart State Synchronization
+        function salvarCarrinho() {
+            localStorage.setItem('ju_picole_carrinho', JSON.stringify(carrinho));
+            atualizarCarrinho();
+        }
+
+        function adicionarAoCarrinho(idProduto) {
+            const produto = PRODUTOS.find(p => p.id === idProduto);
+            if (!produto) return;
+
+            const itemExistente = carrinho.find(item => item.id === idProduto);
+
+            if (itemExistente) {
+                itemExistente.quantidade += 1;
+            } else {
+                carrinho.push({ ...produto, quantidade: 1 });
+            }
+
+            salvarCarrinho();
+            mostrarToast(`"${produto.nome}" adicionado!`);
+        }
+
+        function alterarQuantidade(idProduto, delta) {
+            const item = carrinho.find(i => i.id === idProduto);
+            if (!item) return;
+
+            item.quantidade += delta;
+
+            if (item.quantidade <= 0) {
+                carrinho = carrinho.filter(i => i.id !== idProduto);
+            }
+
+            salvarCarrinho();
+        }
+
+        function removerDoCarrinho(idProduto) {
+            carrinho = carrinho.filter(i => i.id !== idProduto);
+            salvarCarrinho();
+            mostrarToast('Item removido do pedido.');
+        }
+
+        // Update Cart Interface
+        function atualizarCarrinho() {
+            const cartBadge = document.getElementById('cart-badge');
+            const carrinhoItens = document.getElementById('carrinho-itens');
+            const carrinhoVazio = document.getElementById('carrinho-vazio');
+            const checkoutSection = document.getElementById('checkout-section');
+            const totalElem = document.getElementById('total-valor');
+
+            const totalQuantidade = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
+            const totalPreco = carrinho.reduce((acc, item) => acc + (item.preco * item.quantidade), 0);
+
+            cartBadge.innerText = totalQuantidade;
+
+            if (carrinho.length === 0) {
+                carrinhoItens.innerHTML = '';
+                carrinhoVazio.style.display = 'block';
+                checkoutSection.style.display = 'none';
+                totalElem.innerText = 'R$ 0,00';
+                return;
+            }
+
+            carrinhoVazio.style.display = 'none';
+            checkoutSection.style.display = 'block';
+
+            carrinhoItens.innerHTML = carrinho.map(item => `
+                <div class="cart-item-card">
+                    <div class="cart-item-details">
+                        <img src="${item.imagem}" alt="${item.nome}" class="cart-item-img" onerror="this.src='https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=500&q=80'">
+                        <div>
+                            <h4 class="cart-item-title">${item.nome}</h4>
+                            <span class="cart-item-unit">R$ ${item.preco.toFixed(2).replace('.', ',')} un</span>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; items-center; gap: 0.8rem;">
+                        <div class="qty-controls">
+                            <button onclick="alterarQuantidade(${item.id}, -1)" class="qty-btn">-</button>
+                            <span class="qty-value">${item.quantidade}</span>
+                            <button onclick="alterarQuantidade(${item.id}, 1)" class="qty-btn">+</button>
+                        </div>
+
+                        <span class="cart-item-total">
+                            R$ ${(item.preco * item.quantidade).toFixed(2).replace('.', ',')}
+                        </span>
+
+                        <button onclick="removerDoCarrinho(${item.id})" class="btn-remove" title="Remover item">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            totalElem.innerText = `R$ ${totalPreco.toFixed(2).replace('.', ',')}`;
+        }
+
+        // Toggle Cash Change Input
+        function tratarOpcaoPagamento() {
+            const pagamento = document.getElementById('cliente-pagamento').value;
+            const campoTroco = document.getElementById('campo-troco');
+
+            if (pagamento === 'Dinheiro') {
+                campoTroco.style.display = 'block';
+            } else {
+                campoTroco.style.display = 'none';
+            }
+        }
+
+        // Send WhatsApp Message Formatting
+        function enviarPedidoWhatsApp(e) {
+            e.preventDefault();
+
+            if (carrinho.length === 0) {
+                mostrarToast('Seu carrinho está vazio!');
+                return;
+            }
+
+            const nome = document.getElementById('cliente-nome').value.trim();
+            const horario = document.getElementById('cliente-horario').value.trim();
+            const pagamento = document.getElementById('cliente-pagamento').value;
+            const troco = document.getElementById('cliente-troco').value.trim();
+            const obs = document.getElementById('cliente-obs').value.trim();
+
+            const total = carrinho.reduce((acc, item) => acc + (item.preco * item.quantidade), 0);
+
+            // Message Body Structure
+            let msg = `🍧 *PEDIDO DE RETIRADA - JÚ PICOLÉ GOURMET* 🍧\n`;
+            msg += `------------------------------------\n`;
+            msg += `📍 *TIPO: RETIRADA NO LOCAL (SEM ENTREGA)*\n`;
+            msg += `------------------------------------\n\n`;
+            msg += `👤 *Cliente:* ${nome}\n`;
+            msg += `⏰ *Previsão de Retirada:* ${horario}\n`;
+            msg += `💳 *Pagamento:* ${pagamento}\n`;
+
+            if (pagamento === 'Dinheiro' && troco) {
+                msg += `💵 *Troco para:* ${troco}\n`;
+            }
+
+            if (obs) msg += `📝 *Observações:* ${obs}\n`;
+
+            msg += `\n🛒 *ITENS DO PEDIDO:*\n`;
+            carrinho.forEach(item => {
+                const itemTotal = (item.preco * item.quantidade).toFixed(2).replace('.', ',');
+                msg += `▪️ ${item.quantidade}x ${item.nome} - R$ ${itemTotal}\n`;
+            });
+
+            msg += `\n💰 *TOTAL:* R$ ${total.toFixed(2).replace('.', ',')}\n\n`;
+            msg += `Aguardo a confirmação e o endereço para busca! ✨`;
+
+            const phone = "5581989460903";
+            const encodedText = encodeURIComponent(msg);
+            const whatsappUrl = `https://wa.me/${phone}?text=${encodedText}`;
+
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Custom Toast Popup Notification
+        function mostrarToast(mensagem) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+
+            toast.className = 'toast';
+            toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>${mensagem}</span>`;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 2500);
+        }
+
+        // Page Load Initialization
+        window.onload = function() {
+            renderizarProdutos();
+            atualizarCarrinho();
+        };
+    </script>
+</body>
+</html>
